@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diportista Brasil | Diário de bordo digital</title>
+  <meta name="description" content="Registre passeios, controle combustível, acompanhe custos e organize a vida a bordo com o app Diportista." />
+  <style>
+    :root {
+      --bg:#05101d;
+      --card:#0c1c31;
+      --line:rgba(255,255,255,.10);
+      --text:#eef4ff;
+      --muted:#aab8cf;
+      --blue:#67c6ff;
+      --gold:#f3c66b;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,Arial,sans-serif;background:radial-gradient(circle at top left,rgba(103,198,255,.18),transparent 30%),radial-gradient(circle at bottom right,rgba(243,198,107,.12),transparent 25%),linear-gradient(180deg,#040b16 0%,#071120 45%,#081828 100%);color:var(--text)}
+    .wrap{width:min(1120px,calc(100% - 24px));margin:0 auto}
+    .hero{padding:44px 0 26px}
+    .top{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-size:1.4rem;font-weight:800}
+    .brand img{width:42px;height:42px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,.12)}
+    .langs{display:flex;gap:10px;align-items:center;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.04)}
+    .langs a{color:var(--muted);text-decoration:none;font-weight:700}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center}
+    .badge{display:inline-block;padding:9px 14px;border-radius:999px;background:rgba(103,198,255,.12);border:1px solid rgba(103,198,255,.2);color:#9ad9ff;font-size:.82rem;font-weight:800;text-transform:uppercase;letter-spacing:.03em}
+    h1{font-size:clamp(2.4rem,5vw,4.6rem);line-height:.98;letter-spacing:-.04em;margin:18px 0 0}
+    .accent{color:var(--gold)}
+    .lead{font-size:1.15rem;line-height:1.72;color:var(--muted);max-width:680px;margin:18px 0 0}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 22px;border-radius:16px;text-decoration:none;font-weight:800;border:1px solid rgba(255,255,255,.1)}
+    .btn-primary{background:linear-gradient(180deg,#fff 0%,#e8f7ff 100%);color:#06111f}
+    .btn-secondary{background:rgba(255,255,255,.05);color:#fff}
+    .card{background:linear-gradient(180deg,rgba(11,25,48,.9),rgba(7,18,35,.96));border:1px solid var(--line);border-radius:28px;padding:14px;box-shadow:0 22px 60px rgba(0,0,0,.35)}
+    .card img{border-radius:20px;width:100%;display:block}
+    section{padding:24px 0}
+    h2{font-size:clamp(1.8rem,3vw,2.8rem);letter-spacing:-.03em;margin:0 0 14px}
+    .sub{color:var(--muted);line-height:1.7;max-width:760px;margin:0 0 18px}
+    .benefits{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .benefit{background:linear-gradient(180deg,rgba(12,28,50,.88),rgba(7,18,35,.94));border:1px solid var(--line);border-radius:22px;padding:22px}
+    .benefit .icon{font-size:1.6rem;margin-bottom:12px}
+    .benefit h3{margin:0 0 8px;font-size:1.08rem}
+    .benefit p{margin:0;color:var(--muted);line-height:1.65}
+    .cta{background:radial-gradient(circle at top left,rgba(103,198,255,.16),transparent 28%),radial-gradient(circle at bottom right,rgba(243,198,107,.14),transparent 24%),linear-gradient(180deg,rgba(10,22,43,.95),rgba(8,18,35,.98));border:1px solid var(--line);border-radius:28px;padding:28px}
+    .footer{padding:28px 0 40px;color:var(--muted);font-size:.95rem;border-top:1px solid rgba(255,255,255,.08);margin-top:18px}
+    @media (max-width:900px){.grid,.benefits{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap hero">
+    <div class="top">
+      <div class="brand"><img src="hero-postcard.png" alt="Diportista" /> <span>Diportista Brasil</span></div>
+      <div class="langs"><a href="index.html">IT</a><span>|</span><a href="index-en.html">EN</a><span>|</span><a href="index-fr.html">FR</a><span>|</span><a href="index-es.html">ES</a><span>|</span><a href="index-pt.html" style="color:white">PT</a></div>
+    </div>
+
+    <div class="grid">
+      <div>
+        <span class="badge">App para quem ama o mar</span>
+        <h1>Organize sua vida a bordo com <span class="accent">mais controle</span>.</h1>
+        <p class="lead">Registre saídas, acompanhe combustível, controle custos, visualize gráficos e mantenha tudo da sua embarcação organizado em um só lugar. Um app bonito, prático e pensado para o dia a dia no mar.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Baixar no Google Play</a>
+          <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">Abrir App Store</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="home.jpeg" alt="Tela inicial do Diportista" />
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>Por que baixar Diportista?</h2>
+      <p class="sub">Uma solução clara para quem quer parar de depender de anotações soltas, planilhas confusas e memória. Tudo fica centralizado e fácil de consultar.</p>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="icon">⛽</div>
+          <h3>Combustível sob controle</h3>
+          <p>Acompanhe abastecimentos, preço por litro, consumo e autonomia de forma simples.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">📊</div>
+          <h3>Custos e gráficos</h3>
+          <p>Entenda melhor quanto sua embarcação custa ao longo da temporada com dados visuais e organizados.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🧭</div>
+          <h3>Diário de bordo digital</h3>
+          <p>Registre passeios, milhas e atividades a bordo em um app bonito e profissional.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap cta">
+      <h2>Baixe agora e leve mais organização para sua navegação</h2>
+      <p class="sub">Diportista foi criado para proprietários de embarcações e apaixonados pelo mar que querem mais praticidade, mais controle e uma experiência premium.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Quero baixar</a>
+        <a class="btn btn-secondary" href="index-pt.html">Ver site completo</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap footer">© 2026 Diportista • Diário de bordo digital para embarcações.</div>
+</body>
+</html>
