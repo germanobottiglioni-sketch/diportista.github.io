@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diportista | Seu Diário de Bordo Digital</title>
-  <meta name="description" content="Diportista é o app para proprietários de embarcações: diário de bordo digital, combustível, custos, vencimentos, gráficos, exportação e compartilhamento das saídas no mar." />
+  <title>Diportista | Controle os custos do seu barco</title>
+  <meta name="description" content="Descubra quanto custa realmente seu barco. Controle combustível, despesas, histórico e saídas com Diportista." />
 
   <style>
     :root {
       --bg: #06111f;
       --bg-soft: #09172a;
-      --card: rgba(8, 18, 36, 0.82);
+      --card: rgba(8, 18, 36, 0.84);
       --card-strong: rgba(12, 27, 51, 0.96);
       --text: #eef4ff;
       --muted: #a9b9d3;
@@ -18,13 +18,13 @@
       --blue: #4bb7ff;
       --blue-soft: rgba(75, 183, 255, 0.18);
       --gold: #f3c66b;
-      --gold-soft: rgba(243, 198, 107, 0.16);
       --green: #52d49c;
+      --green-strong: #38c172;
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 18px;
-      --max: 1240px;
+      --max: 1220px;
     }
 
     * { box-sizing: border-box; }
@@ -36,7 +36,7 @@
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(75,183,255,0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(243,198,107,0.11), transparent 28%),
+        radial-gradient(circle at top right, rgba(243,198,107,0.10), transparent 28%),
         linear-gradient(180deg, #040b16 0%, #071120 38%, #07182a 100%);
       min-height: 100vh;
     }
@@ -52,7 +52,7 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 40;
       backdrop-filter: blur(16px);
       background: rgba(4, 11, 22, 0.78);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -126,14 +126,15 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 52px;
+      min-height: 54px;
       padding: 0 22px;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1rem;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -149,6 +150,12 @@
     .btn-secondary {
       color: white;
       background: rgba(255,255,255,0.05);
+    }
+
+    .btn-green {
+      color: white;
+      background: linear-gradient(180deg, #4ed786 0%, #2fb36a 100%);
+      border-color: rgba(82,212,156,0.35);
     }
 
     .lang-dropdown {
@@ -210,9 +217,7 @@
       transition: background .18s ease, color .18s ease;
     }
 
-    .lang-menu a:last-child {
-      border-bottom: none;
-    }
+    .lang-menu a:last-child { border-bottom: none; }
 
     .lang-menu a:hover {
       background: rgba(255,255,255,0.05);
@@ -220,13 +225,13 @@
     }
 
     .hero {
-      padding: 56px 0 28px;
+      padding: 58px 0 30px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 36px;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 34px;
       align-items: center;
     }
 
@@ -248,10 +253,10 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(2.6rem, 5vw, 4.8rem);
+      font-size: clamp(2.6rem, 5vw, 4.9rem);
       line-height: 0.98;
-      letter-spacing: -0.04em;
-      max-width: 720px;
+      letter-spacing: -0.045em;
+      max-width: 760px;
     }
 
     .accent { color: var(--gold); }
@@ -259,9 +264,37 @@
     .hero p {
       margin: 22px 0 0;
       color: var(--muted);
-      font-size: 1.2rem;
-      line-height: 1.7;
-      max-width: 700px;
+      font-size: 1.16rem;
+      line-height: 1.72;
+      max-width: 690px;
+    }
+
+    .bullet-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .bullet {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.02rem;
+    }
+
+    .bullet-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(82,212,156,0.14);
+      border: 1px solid rgba(82,212,156,0.28);
+      color: var(--green);
+      flex-shrink: 0;
+      font-weight: 900;
     }
 
     .hero-actions {
@@ -271,31 +304,24 @@
       flex-wrap: wrap;
     }
 
-    .hero-points {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .point {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .point strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .point span {
+    .trust-row {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-top: 24px;
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
+      font-size: 0.96rem;
+    }
+
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .hero-card {
@@ -336,25 +362,51 @@
 
     .section-head p {
       margin: 0;
-      max-width: 640px;
+      max-width: 650px;
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 1.05rem;
+      line-height: 1.72;
+      font-size: 1.04rem;
     }
 
-    .features-grid {
+    .problem-grid,
+    .features-grid,
+    .shots-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .feature-card {
+    .problem-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .features-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .shots-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
       background: linear-gradient(180deg, rgba(12, 28, 50, 0.88) 0%, rgba(7, 18, 34, 0.92) 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 22px;
       box-shadow: var(--shadow);
-      min-height: 220px;
+    }
+
+    .problem-card h3,
+    .feature-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .problem-card p,
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.98rem;
     }
 
     .feature-icon {
@@ -373,28 +425,6 @@
     .feature-card:nth-child(3n) .feature-icon {
       background: linear-gradient(180deg, rgba(243,198,107,0.18), rgba(243,198,107,0.08));
       border-color: rgba(243,198,107,0.26);
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.98rem;
-    }
-
-    .feature-card strong {
-      color: white;
-    }
-
-    .shots-grid {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 16px;
     }
 
     .shot {
@@ -425,64 +455,11 @@
     .shot-body p {
       margin: 0;
       color: var(--muted);
-      font-size: 0.9rem;
+      font-size: 0.92rem;
       line-height: 1.55;
     }
 
-    .benefits {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-    }
-
-    .panel {
-      background: linear-gradient(180deg, rgba(10,22,43,0.9), rgba(7,18,35,0.95));
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .check-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .check {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .check-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(82,212,156,0.14);
-      border: 1px solid rgba(82,212,156,0.26);
-      color: var(--green);
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-
-    .check strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.02rem;
-    }
-
-    .check p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .cta {
+    .cta-section {
       position: relative;
       overflow: hidden;
       background:
@@ -491,12 +468,22 @@
         linear-gradient(180deg, rgba(10,22,43,0.95), rgba(8,18,35,0.98));
     }
 
-    .cta h2 { margin-top: 0; }
+    .cta-box {
+      text-align: center;
+      padding: 10px 0;
+    }
 
-    .cta p {
+    .cta-box h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 3vw, 3.1rem);
+      letter-spacing: -0.03em;
+    }
+
+    .cta-box p {
+      margin: 0 auto;
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
+      line-height: 1.72;
+      font-size: 1.06rem;
       max-width: 760px;
     }
 
@@ -504,7 +491,8 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      justify-content: center;
+      margin-top: 26px;
     }
 
     footer {
@@ -523,16 +511,13 @@
     }
 
     @media (max-width: 1180px) {
+      .problem-grid { grid-template-columns: 1fr; }
       .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .shots-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .shots-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
-      .benefits {
-        grid-template-columns: 1fr;
-      }
-
+      .hero-grid { grid-template-columns: 1fr; }
       .nav { display: none; }
       .topbar-inner { align-items: flex-start; }
       .topbar-actions {
@@ -541,7 +526,6 @@
         margin-left: 0;
       }
       .store-links { justify-content: flex-start; }
-      .hero-points { grid-template-columns: 1fr; }
       .section-head { flex-direction: column; align-items: flex-start; }
     }
 
@@ -549,7 +533,7 @@
       .container { width: min(var(--max), calc(100% - 20px)); }
       .hero { padding-top: 34px; }
       .features-grid,
-      .shots-grid { grid-template-columns: 1fr 1fr; }
+      .shots-grid { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .hero-actions,
       .cta-actions,
@@ -565,11 +549,6 @@
         min-width: unset;
       }
     }
-
-    @media (max-width: 520px) {
-      .features-grid,
-      .shots-grid { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
@@ -583,10 +562,10 @@
       </a>
 
       <nav class="nav">
-        <a href="#funzionalidades">Funcionalidades</a>
+        <a href="#problema">Problema</a>
+        <a href="#funcionalidades">Funcionalidades</a>
         <a href="#preview">Prévia</a>
-        <a href="#vantagens">Por que escolher</a>
-        <a href="#download">Download</a>
+        <a href="#download">Baixar</a>
       </nav>
 
       <div class="topbar-actions">
@@ -613,37 +592,75 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Diário de bordo digital</div>
-          <h1>Seu companheiro de bordo. <span class="accent">Onde você estiver.</span></h1>
+          <div class="eyebrow">Controle real do seu barco</div>
+          <h1>Você sabe quanto custa <span class="accent">realmente</span> seu barco?</h1>
           <p>
-            Diportista é o app pensado para proprietários e navegadores que querem registrar saídas,
-            acompanhar consumo, controlar custos e manter toda a vida a bordo organizada
-            de forma simples, elegante e profissional.
+            Combustível, manutenção, despesas e histórico de saídas...
+            no fim, muita gente não sabe quanto realmente gastou.
+            Com o Diportista, você vê tudo de forma simples, clara e profissional.
           </p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Baixar no Google Play</a>
-            <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">Baixar na App Store</a>
+          <div class="bullet-list">
+            <div class="bullet">
+              <span class="bullet-mark">✓</span>
+              <span>Controle total dos custos</span>
+            </div>
+            <div class="bullet">
+              <span class="bullet-mark">✓</span>
+              <span>Consumo real da embarcação</span>
+            </div>
+            <div class="bullet">
+              <span class="bullet-mark">✓</span>
+              <span>Histórico completo das saídas</span>
+            </div>
           </div>
 
-          <div class="hero-points">
-            <div class="point">
-              <strong>Registro de saídas</strong>
-              <span>Registre navegações, milhas, consumo, velocidade e dados da sua embarcação em um só lugar.</span>
-            </div>
-            <div class="point">
-              <strong>Controle de custos</strong>
-              <span>Gerencie combustível, manutenção, despesas e exportação CSV em poucos toques.</span>
-            </div>
-            <div class="point">
-              <strong>Visual premium</strong>
-              <span>Painéis elegantes, KPIs claros, gráficos úteis e telas realmente agradáveis de usar.</span>
-            </div>
+          <div class="hero-actions">
+            <a class="btn btn-green" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Baixe agora</a>
+            <a class="btn btn-secondary" href="#funcionalidades">Ver como funciona</a>
+          </div>
+
+          <div class="trust-row">
+            <div class="trust-pill">⛽ Combustível</div>
+            <div class="trust-pill">💶 Despesas</div>
+            <div class="trust-pill">📘 Histórico</div>
+            <div class="trust-pill">📊 Estatísticas</div>
           </div>
         </div>
 
         <div class="hero-card">
-          <img src="hero-postcard.png" alt="Prévia premium do Diportista" />
+          <img src="a_digital_advertisement_for_diportista_targets_bra.png" alt="Anúncio do Diportista para o Brasil" />
+        </div>
+      </div>
+    </section>
+
+    <section id="problema">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>O problema não é ter barco. É não ter controle.</h2>
+          </div>
+          <p>
+            Muita gente anota no papel, esquece abastecimentos, não acompanha os gastos do mês
+            e perde a visão real do custo da embarcação. É exatamente isso que o Diportista resolve.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <article class="card problem-card">
+            <h3>Combustível sem controle</h3>
+            <p>Você abastece, mas depois não consegue ver claramente quanto já gastou, quanto consome e qual é o custo real por saída.</p>
+          </article>
+
+          <article class="card problem-card">
+            <h3>Despesas espalhadas</h3>
+            <p>Manutenção, marina, peças e outros custos ficam espalhados em notas, mensagens ou na memória.</p>
+          </article>
+
+          <article class="card problem-card">
+            <h3>Sem visão de histórico</h3>
+            <p>Depois de algumas semanas, já fica difícil comparar saídas, entender tendências e enxergar o custo real da operação.</p>
+          </article>
         </div>
       </div>
     </section>
@@ -652,61 +669,61 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Por que escolher o Diportista</h2>
+            <h2>Como o Diportista te ajuda</h2>
           </div>
           <p>
-            Um único app para reunir navegação, combustível, despesas, vencimentos e histórico.
-            Feito para quem quer uma ferramenta séria, mas simples de usar no dia a dia.
+            O foco aqui não é “ter mais um app”. É ter uma ferramenta realmente útil para acompanhar custos,
+            consumo e vida a bordo de forma prática.
           </p>
         </div>
 
         <div class="features-grid">
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">📘</div>
             <h3>Diário de bordo digital</h3>
-            <p>Registre saídas, milhas navegadas, tempo, consumo e dados essenciais da navegação de forma clara e organizada.</p>
+            <p>Registre saídas, milhas navegadas, duração, velocidade e dados principais da navegação em uma estrutura organizada.</p>
           </article>
 
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">⛽</div>
             <h3>Combustível e consumo</h3>
-            <p>Acompanhe abastecimentos, custo por litro, autonomia restante e evolução dos preços em um painel direto e intuitivo.</p>
+            <p>Acompanhe abastecimentos, custo por litro, consumo e autonomia de forma clara e fácil de consultar.</p>
           </article>
 
-          <article class="feature-card">
+          <article class="card feature-card">
+            <div class="feature-icon">💶</div>
+            <h3>Despesas organizadas</h3>
+            <p>Separe custos por categoria e tenha uma visão mais limpa e profissional da operação da sua embarcação.</p>
+          </article>
+
+          <article class="card feature-card">
             <div class="feature-icon">📊</div>
             <h3>Gráficos e estatísticas</h3>
-            <p>Analise <strong>milhas, custos, consumo e tendências</strong> ao longo do tempo com KPIs legíveis e úteis.</p>
+            <p>Veja tendências de custos, combustível e histórico ao longo do tempo com leitura rápida e útil.</p>
           </article>
 
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">🛟</div>
             <h3>Vencimentos a bordo</h3>
-            <p>Mantenha sob controle documentos, equipamentos, renovações e manutenções com uma visão simples e imediata.</p>
+            <p>Tenha uma visão simples de documentos, segurança, renovações e manutenções importantes.</p>
           </article>
 
-          <article class="feature-card">
-            <div class="feature-icon">💶</div>
-            <h3>Despesas diversas</h3>
-            <p>Organize as despesas da embarcação por categoria, diferencie custos e tenha uma visão mais clara da temporada.</p>
-          </article>
-
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">📤</div>
-            <h3>Exportação de dados</h3>
-            <p>Gere exportações CSV para arquivamento, análise e compartilhamento dos dados principais com rapidez.</p>
+            <h3>Exportação CSV</h3>
+            <p>Exporte seus dados para análise, organização e compartilhamento de forma rápida.</p>
           </article>
 
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">🧭</div>
-            <h3>Home inteligente</h3>
-            <p>Uma tela inicial compacta e premium mostrando combustível, saídas, KPIs e acessos rápidos às funções principais.</p>
+            <h3>Tela inicial premium</h3>
+            <p>Uma home clara e bonita para você ver rapidamente combustível, custos, saídas e atalhos principais.</p>
           </article>
 
-          <article class="feature-card">
+          <article class="card feature-card">
             <div class="feature-icon">✨</div>
-            <h3>Experiência refinada</h3>
-            <p>Diportista não é só útil: foi projetado para oferecer uma experiência visual premium, clara e alinhada ao universo náutico.</p>
+            <h3>Visual profissional</h3>
+            <p>Além de útil, o Diportista foi pensado para ser agradável de usar, com visual premium e foco no mundo náutico.</p>
           </article>
         </div>
       </div>
@@ -716,11 +733,11 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Prévia real do aplicativo</h2>
+            <h2>Veja a app na prática</h2>
           </div>
           <p>
-            Uma visão geral das principais telas: home, abastecimentos, vencimentos, despesas, exportação e gráficos.
-            Tudo pensado para ser imediato, legível e profissional.
+            Estas são algumas das telas principais para mostrar como o Diportista organiza as informações
+            de um jeito simples, visual e realmente útil.
           </p>
         </div>
 
@@ -729,7 +746,7 @@
             <img src="home.jpeg" alt="Tela inicial Diportista" />
             <div class="shot-body">
               <h3>Home premium</h3>
-              <p>Painel principal com combustível, KPIs, atalhos rápidos e status Premium.</p>
+              <p>Painel principal com combustível, KPIs e atalhos rápidos.</p>
             </div>
           </article>
 
@@ -737,31 +754,7 @@
             <img src="rifornimenti.jpeg" alt="Abastecimentos Diportista" />
             <div class="shot-body">
               <h3>Abastecimentos</h3>
-              <p>Evolução do preço, histórico de abastecimentos e dados econômicos sempre sob controle.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="scadenze.jpeg" alt="Vencimentos a bordo Diportista" />
-            <div class="shot-body">
-              <h3>Vencimentos a bordo</h3>
-              <p>Visão clara para documentos, segurança, manutenção e lembretes importantes.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="spese.jpeg" alt="Despesas Diportista" />
-            <div class="shot-body">
-              <h3>Despesas diversas</h3>
-              <p>Análise de custos por categoria com distribuição clara e ferramentas úteis para o proprietário.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="esportazione.jpeg" alt="Exportação Diportista" />
-            <div class="shot-body">
-              <h3>Exportação CSV</h3>
-              <p>Exporte o mês e o ano atual para compartilhar ou arquivar os dados da embarcação.</p>
+              <p>Preço, histórico e visão clara do combustível.</p>
             </div>
           </article>
 
@@ -769,61 +762,24 @@
             <img src="grafici.jpeg" alt="Gráficos e estatísticas Diportista" />
             <div class="shot-body">
               <h3>Gráficos e estatísticas</h3>
-              <p>Uma leitura visual imediata de custos, consumo e milhas navegadas.</p>
+              <p>Leitura visual de custos, consumo e histórico.</p>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="vantagens">
-      <div class="container benefits">
-        <div class="panel">
-          <h2>Um app realmente útil na vida real a bordo</h2>
-          <div class="check-list">
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Organização e controle</strong>
-                <p>Reduz anotações soltas, planilhas e contas separadas: tudo fica em um sistema único, claro e sempre disponível.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Mais consciência dos custos</strong>
-                <p>Entenda melhor quanto você realmente gasta com combustível, manutenção e outras despesas da embarcação.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Vencimentos sempre sob controle</strong>
-                <p>Documentos, segurança e manutenção deixam de ficar espalhados: você tem uma visão imediata e fácil de entender.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Experiência premium</strong>
-                <p>Não é só útil, é prazeroso de usar: design refinado, navegação organizada e interface coerente com o universo náutico.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel cta" id="download">
-          <h2>Baixe o Diportista</h2>
+    <section class="cta-section" id="download">
+      <div class="container">
+        <div class="cta-box">
+          <h2>Comece agora a controlar melhor seu barco</h2>
           <p>
-            Leve para bordo uma gestão mais moderna e organizada da sua vida no mar.
-            Experimente no Android e no iPhone e descubra como é prático ter saídas, custos e vencimentos em um único app.
+            Se você quer sair do improviso e finalmente entender combustível, custos e histórico da sua embarcação,
+            o Diportista é o passo certo.
           </p>
 
           <div class="cta-actions">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Abrir no Google Play</a>
+            <a class="btn btn-green" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Baixar no Google Play</a>
             <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">Abrir na App Store</a>
           </div>
         </div>
@@ -833,7 +789,7 @@
 
   <footer>
     <div class="container footer-box">
-      <div>© 2026 Diportista • O diário de bordo digital para proprietários e navegadores.</div>
+      <div>© 2026 Diportista • Controle combustível, despesas e histórico da sua embarcação.</div>
       <div>
         <a href="privacy.html">Privacidade</a> •
         <a href="terms.html">Termos</a> •
