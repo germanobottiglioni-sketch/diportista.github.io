@@ -1,134 +1,10 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diportista | Il tuo diario di bordo digitale</title>
-
-  <style>
-    :root {
-      --bg: #06111f;
-      --text: #eef4ff;
-      --muted: #a9b9d3;
-      --line: rgba(133, 164, 210, 0.18);
-      --blue: #4bb7ff;
-      --gold: #f3c66b;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, Arial;
-      color: var(--text);
-      background: #071120;
-    }
-
-    .container {
-      width: 92%;
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      background: rgba(4, 11, 22, 0.9);
-      padding: 15px 0;
-    }
-
-    .topbar-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.4rem;
-    }
-
-    .brand img {
-      width: 40px;
-      border-radius: 10px;
-    }
-
-    .nav {
-      display: flex;
-      gap: 20px;
-      color: var(--muted);
-    }
-
-    .nav a:hover { color: white; }
-
-    /* 🔥 LANGS */
-    .langs{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:12px;
-      background:rgba(255,255,255,.04);
-    }
-
-    .langs a{
-      color:#a9b9d3;
-      text-decoration:none;
-      font-weight:700;
-    }
-
-    .langs a:hover{
-      color:#ffffff;
-    }
-
-    .store-links {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn {
-      padding: 10px 16px;
-      border-radius: 12px;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .btn-primary {
-      background: white;
-      color: black;
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.1);
-      color: white;
-    }
-
-    .hero {
-      padding: 60px 0;
-    }
-
-    h1 {
-      font-size: 2.8rem;
-    }
-
-    p {
-      color: var(--muted);
-    }
-  </style>
-</head>
-
-<body>
-
 <header class="topbar">
   <div class="container topbar-inner">
 
-    <div class="brand">
-      <img src="hero-postcard.png" />
-      Diportista
-    </div>
+    <a href="index.html" class="brand">
+      <img src="hero-postcard.png" alt="Anteprima Diportista" />
+      <span>Diportista</span>
+    </a>
 
     <nav class="nav">
       <a href="#">Funzionalità</a>
@@ -136,7 +12,6 @@
       <a href="#">Vantaggi</a>
     </nav>
 
-    <!-- 🔥 MENU LINGUE -->
     <div class="langs">
       <a href="index.html" style="color:white">IT</a>
       <span>|</span>
@@ -150,21 +25,9 @@
     </div>
 
     <div class="store-links">
-      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank">Google Play</a>
-      <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank">App Store</a>
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">App Store</a>
     </div>
 
   </div>
 </header>
-
-<section class="hero">
-  <div class="container">
-    <h1>Il tuo diario di bordo digitale</h1>
-    <p>
-      Gestisci uscite, carburante, costi e scadenze in un’unica app.
-    </p>
-  </div>
-</section>
-
-</body>
-</html>
