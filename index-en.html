@@ -3,733 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diportista | Your digital logbook</title>
-  <meta name="description" content="Diportista is the app for boat owners and sea lovers: digital logbook, fuel tracking, costs, deadlines, charts, CSV export and trip sharing." />
+  <title>Diportista | Your Digital Logbook</title>
+  <meta name="description" content="Diportista is the app for boat owners: digital logbook, fuel tracking, costs, deadlines, charts, export and trip sharing." />
+
   <style>
     :root {
       --bg: #06111f;
-      --bg-soft: #09172a;
-      --card: rgba(8, 18, 36, 0.82);
-      --card-strong: rgba(12, 27, 51, 0.96);
       --text: #eef4ff;
       --muted: #a9b9d3;
       --line: rgba(133, 164, 210, 0.18);
       --blue: #4bb7ff;
-      --blue-soft: rgba(75, 183, 255, 0.18);
       --gold: #f3c66b;
-      --gold-soft: rgba(243, 198, 107, 0.16);
-      --green: #52d49c;
-      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-      --radius-xl: 28px;
-      --radius-lg: 22px;
-      --radius-md: 18px;
-      --max: 1240px;
     }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family: Inter, Arial;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(75,183,255,0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(243,198,107,0.11), transparent 28%),
-        linear-gradient(180deg, #040b16 0%, #071120 38%, #07182a 100%);
-      min-height: 100vh;
+      background: #071120;
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
     .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
+      width: 92%;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
-      backdrop-filter: blur(16px);
-      background: rgba(4, 11, 22, 0.78);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(4, 11, 22, 0.9);
+      padding: 15px 0;
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      padding: 16px 0;
+      gap: 15px;
+      flex-wrap: wrap;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       font-weight: 800;
-      font-size: 1.55rem;
-      letter-spacing: -0.02em;
+      font-size: 1.4rem;
     }
 
-    .brand-badge {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.28);
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.08);
-      flex-shrink: 0;
-    }
-
-    .brand-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .brand img {
+      width: 40px;
+      border-radius: 10px;
     }
 
     .nav {
       display: flex;
-      align-items: center;
-      gap: 26px;
+      gap: 20px;
       color: var(--muted);
-      font-weight: 600;
-      font-size: 0.96rem;
     }
 
     .nav a:hover { color: white; }
 
+    /* LANGUAGE DROPDOWN */
+    .lang-dropdown {
+      position: relative;
+    }
+
+    .lang-btn {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .lang-menu {
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: #0b1a2e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      display: none;
+      min-width: 180px;
+      overflow: hidden;
+    }
+
+    .lang-menu a {
+      display: block;
+      padding: 10px 14px;
+      color: #a9b9d3;
+    }
+
+    .lang-menu a:hover {
+      background: rgba(255,255,255,0.05);
+      color: white;
+    }
+
+    .lang-dropdown:hover .lang-menu {
+      display: block;
+    }
+
     .store-links {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
+      gap: 10px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,0.12);
+      padding: 10px 16px;
+      border-radius: 12px;
       font-weight: 700;
-      font-size: 1rem;
-      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 14px 28px rgba(0,0,0,0.24);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .btn-primary {
-      color: #071220;
-      background: linear-gradient(180deg, #ffffff 0%, #e9f7ff 100%);
+      background: white;
+      color: black;
     }
 
     .btn-secondary {
+      background: rgba(255,255,255,0.1);
       color: white;
-      background: rgba(255,255,255,0.05);
     }
 
     .hero {
-      padding: 56px 0 28px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 36px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: var(--blue-soft);
-      border: 1px solid rgba(75,183,255,0.24);
-      color: #99dbff;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      font-size: 0.84rem;
-      margin-bottom: 22px;
+      padding: 60px 0;
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(2.6rem, 5vw, 4.8rem);
-      line-height: 0.98;
-      letter-spacing: -0.04em;
-      max-width: 720px;
+      font-size: 2.8rem;
     }
 
-    .accent { color: var(--gold); }
-
-    .hero p {
-      margin: 22px 0 0;
+    p {
       color: var(--muted);
-      font-size: 1.2rem;
-      line-height: 1.7;
-      max-width: 700px;
-    }
-
-    .hero-actions {
-      margin-top: 30px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-
-    .hero-points {
-      margin-top: 26px;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .point {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .point strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 6px;
-    }
-
-    .point span {
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .hero-card {
-      background:
-        radial-gradient(circle at top right, rgba(75,183,255,0.22), transparent 28%),
-        radial-gradient(circle at bottom left, rgba(243,198,107,0.18), transparent 22%),
-        linear-gradient(180deg, rgba(9,18,34,0.96) 0%, rgba(7,17,32,0.98) 100%);
-      border: 1px solid rgba(122, 166, 233, 0.22);
-      border-radius: 30px;
-      padding: 14px;
-      box-shadow: 0 24px 70px rgba(0,0,0,0.42);
-    }
-
-    .hero-card img {
-      border-radius: 22px;
-      width: 100%;
-      object-fit: cover;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    section {
-      padding: 34px 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 20px;
-      margin-bottom: 24px;
-    }
-
-    .section-head h2 {
-      margin: 0;
-      font-size: clamp(2rem, 3vw, 3rem);
-      letter-spacing: -0.03em;
-    }
-
-    .section-head p {
-      margin: 0;
-      max-width: 640px;
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .feature-card {
-      background: linear-gradient(180deg, rgba(12, 28, 50, 0.88) 0%, rgba(7, 18, 34, 0.92) 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      box-shadow: var(--shadow);
-      min-height: 220px;
-    }
-
-    .feature-icon {
-      width: 54px;
-      height: 54px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 18px;
-      margin-bottom: 18px;
-      font-size: 1.45rem;
-      background: linear-gradient(180deg, rgba(75,183,255,0.18), rgba(75,183,255,0.08));
-      border: 1px solid rgba(75,183,255,0.24);
-    }
-
-    .feature-card:nth-child(3n) .feature-icon {
-      background: linear-gradient(180deg, rgba(243,198,107,0.18), rgba(243,198,107,0.08));
-      border-color: rgba(243,198,107,0.26);
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-    }
-
-    .feature-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-      font-size: 0.98rem;
-    }
-
-    .feature-card strong {
-      color: white;
-    }
-
-    .shots-grid {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .shot {
-      background: linear-gradient(180deg, rgba(11,25,48,0.88), rgba(7,18,35,0.95));
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .shot img {
-      width: 100%;
-      aspect-ratio: 9 / 19.5;
-      object-fit: cover;
-      object-position: top center;
-      background: #030813;
-    }
-
-    .shot-body {
-      padding: 14px 14px 18px;
-    }
-
-    .shot-body h3 {
-      margin: 0 0 6px;
-      font-size: 1rem;
-    }
-
-    .shot-body p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 18px;
-    }
-
-    .panel {
-      background: linear-gradient(180deg, rgba(10,22,43,0.9), rgba(7,18,35,0.95));
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .check-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .check {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .check-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(82,212,156,0.14);
-      border: 1px solid rgba(82,212,156,0.26);
-      color: var(--green);
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-
-    .check strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.02rem;
-    }
-
-    .check p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .cta {
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at top left, rgba(75,183,255,0.22), transparent 26%),
-        radial-gradient(circle at bottom right, rgba(243,198,107,0.2), transparent 26%),
-        linear-gradient(180deg, rgba(10,22,43,0.95), rgba(8,18,35,0.98));
-    }
-
-    .cta h2 { margin-top: 0; }
-
-    .cta p {
-      color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
-      max-width: 760px;
-    }
-
-    .cta-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    footer {
-      padding: 24px 0 40px;
-      color: var(--muted);
-    }
-
-    .footer-box {
-      border-top: 1px solid rgba(255,255,255,0.08);
-      padding-top: 20px;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-    }
-
-    @media (max-width: 1180px) {
-      .features-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .shots-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .benefits { grid-template-columns: 1fr; }
-      .nav { display: none; }
-      .topbar-inner { align-items: flex-start; }
-      .store-links { justify-content: flex-start; }
-      .hero-points { grid-template-columns: 1fr; }
-      .section-head { flex-direction: column; align-items: flex-start; }
-    }
-
-    @media (max-width: 720px) {
-      .container { width: min(var(--max), calc(100% - 20px)); }
-      .hero { padding-top: 34px; }
-      .features-grid,
-      .shots-grid { grid-template-columns: 1fr 1fr; }
-      .btn { width: 100%; }
-      .hero-actions,
-      .cta-actions,
-      .store-links { width: 100%; }
-      .brand { font-size: 1.25rem; }
-      .footer-box { flex-direction: column; }
-    }
-
-    @media (max-width: 520px) {
-      .features-grid,
-      .shots-grid { grid-template-columns: 1fr; }
+      max-width: 600px;
     }
   </style>
 </head>
+
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#top" class="brand">
-        <span class="brand-badge"><img src="hero-postcard.png" alt="Diportista" /></span>
-        <span>Diportista</span>
-      </a>
 
-      <nav class="nav">
-        <a href="#features">Features</a>
-        <a href="#preview">Preview</a>
-        <a href="#benefits">Why choose it</a>
-        <a href="#download">Download</a>
-      </nav>
-      <a href="index-en.html" style="color:white">EN</a>
+<header class="topbar">
+  <div class="container topbar-inner">
 
-      <div class="store-links">
-        <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Google Play</a>
-        <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">App Store</a>
+    <a href="index-en.html" class="brand">
+      <img src="hero-postcard.png" alt="Diportista" />
+      Diportista
+    </a>
+
+    <nav class="nav">
+      <a href="#">Features</a>
+      <a href="#">Preview</a>
+      <a href="#">Benefits</a>
+    </nav>
+
+    <!-- LANGUAGE -->
+    <div class="lang-dropdown">
+      <button class="lang-btn">🇬🇧 EN ▾</button>
+      <div class="lang-menu">
+        <a href="index.html">🇮🇹 Italiano</a>
+        <a href="index-en.html">🇬🇧 English</a>
+        <a href="index-fr.html">🇫🇷 Français</a>
+        <a href="index-es.html">🇪🇸 Español</a>
+        <a href="index-pt.html">🇧🇷 Português</a>
       </div>
     </div>
-  </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="eyebrow">Digital logbook</div>
-          <h1>Your boating companion. <span class="accent">Wherever you go.</span></h1>
-          <p>
-            Diportista is the app designed for boat owners and sea lovers who want to record trips,
-            monitor fuel consumption, track costs and keep their full onboard activity under control
-            in a simple, elegant and professional way.
-          </p>
-
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Download on Google Play</a>
-            <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">Download on the App Store</a>
-          </div>
-
-          <div class="hero-points">
-            <div class="point">
-              <strong>Trip logbook</strong>
-              <span>Record trips, miles, fuel usage, speed and your boat's key data in one place.</span>
-            </div>
-            <div class="point">
-              <strong>Cost control</strong>
-              <span>Manage fuel, maintenance, owner expenses and CSV exports in just a few taps.</span>
-            </div>
-            <div class="point">
-              <strong>Premium style</strong>
-              <span>Carefully designed dashboards, clear KPIs, useful charts and a truly polished boating experience.</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="hero-card">
-          <img src="hero-postcard.png" alt="Diportista premium preview" />
-        </div>
-      </div>
-    </section>
-
-    <section id="features">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Why choose Diportista</h2>
-          </div>
-          <p>
-            One single app to manage navigation, fuel, expenses, deadlines and history.
-            Built for people who want a serious tool that still feels simple to use every day.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon">📘</div>
-            <h3>Digital logbook</h3>
-            <p>Record trips, miles traveled, duration, consumption and the most important navigation data with a clean and organized view.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">⛽</div>
-            <h3>Fuel & consumption</h3>
-            <p>Track refuels, price per liter, remaining autonomy and fuel trends with an immediate dashboard.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h3>Charts & statistics</h3>
-            <p>Analyze <strong>miles, costs, consumption and trends</strong> over time with clear KPIs and a structure useful for every owner.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🛟</div>
-            <h3>Onboard deadlines</h3>
-            <p>Keep documents, safety equipment, renewals and maintenance under control with a simple and easy-to-read view.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">💶</div>
-            <h3>Extra expenses</h3>
-            <p>Track boating expenses by category, organize costs better and get a clearer view of your season.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">📤</div>
-            <h3>Data export</h3>
-            <p>Generate CSV exports for archiving, analysis and sharing your boat's key data in seconds.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🧭</div>
-            <h3>Smart home</h3>
-            <p>A compact premium homepage showing fuel status, trip overview, KPIs and quick access to the main functions.</p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">✨</div>
-            <h3>Refined experience</h3>
-            <p>Diportista is not only useful: it is designed to feel premium, clear and consistent with the boating world.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="preview">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <h2>Real app preview</h2>
-          </div>
-          <p>
-            A quick overview of the main screens: home, refueling, deadlines, expenses, export and charts.
-            Everything is designed to be immediate, readable and professional.
-          </p>
-        </div>
-
-        <div class="shots-grid">
-          <article class="shot">
-            <img src="home.jpeg" alt="Diportista home" />
-            <div class="shot-body">
-              <h3>Premium home</h3>
-              <p>Main dashboard with fuel, KPIs, quick actions and Premium status.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="rifornimenti.jpeg" alt="Diportista refueling" />
-            <div class="shot-body">
-              <h3>Refueling</h3>
-              <p>Fuel price trend, refueling history and economic data always under control.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="scadenze.jpeg" alt="Diportista onboard deadlines" />
-            <div class="shot-body">
-              <h3>Onboard deadlines</h3>
-              <p>A clean view for documents, safety, maintenance and important reminders.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="spese.jpeg" alt="Diportista expenses" />
-            <div class="shot-body">
-              <h3>Extra expenses</h3>
-              <p>Category-based cost analysis with a clear breakdown and practical owner tools.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="esportazione.jpeg" alt="Diportista export" />
-            <div class="shot-body">
-              <h3>CSV export</h3>
-              <p>Export the current month or year to share or archive your boating data.</p>
-            </div>
-          </article>
-
-          <article class="shot">
-            <img src="grafici.jpeg" alt="Diportista charts and statistics" />
-            <div class="shot-body">
-              <h3>Charts & statistics</h3>
-              <p>An immediate visual reading of costs, consumption and miles traveled.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="benefits">
-      <div class="container benefits">
-        <div class="panel">
-          <h2>An app that is truly useful in real boating life</h2>
-          <div class="check-list">
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>More order and control</strong>
-                <p>Reduce scattered notes, spreadsheets and separate calculations: everything stays in one clear system, always available.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Better cost awareness</strong>
-                <p>Understand what you really spend on fuel, maintenance and all the other costs of owning a boat.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Deadlines always under control</strong>
-                <p>Documents, safety and maintenance are no longer scattered: you get an immediate and readable overview.</p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Premium experience</strong>
-                <p>Not just useful, but enjoyable to use: polished design, orderly navigation and a look consistent with the boating world.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel cta" id="download">
-          <h2>Download Diportista</h2>
-          <p>
-            Bring a more modern and organized way to manage your time at sea onboard.
-            Try it on Android and iPhone and see how convenient it is to keep trips, costs and deadlines in one single app.
-          </p>
-
-          <div class="cta-actions">
-            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Go to Google Play</a>
-            <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">Go to the App Store</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-box">
-      <div>© 2026 Diportista • The digital logbook for boat owners and sea lovers.</div>
-      <div>
-        <a href="privacy.html">Privacy</a> •
-        <a href="terms.html">Terms</a> •
-        <a href="disclaimer.html">Disclaimer</a>
-      </div>
+    <div class="store-links">
+      <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer">Google Play</a>
+      <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer">App Store</a>
     </div>
-  </footer>
+
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Your Digital Boat Logbook</h1>
+    <p>
+      Track trips, fuel, costs and maintenance in one simple and powerful app.
+    </p>
+  </div>
+</section>
+
 </body>
 </html>
