@@ -50,6 +50,8 @@
       gap: 10px;
       font-weight: 800;
       font-size: 1.4rem;
+      color: var(--text);
+      text-decoration: none;
     }
 
     .brand img {
@@ -60,12 +62,17 @@
     .nav {
       display: flex;
       gap: 20px;
-      color: var(--muted);
     }
 
-    .nav a:hover { color: white; }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
 
-    /* LANGUAGE DROPDOWN */
+    .nav a:hover {
+      color: white;
+    }
+
     .lang-dropdown {
       position: relative;
     }
@@ -96,6 +103,7 @@
       display: block;
       padding: 10px 14px;
       color: #a9b9d3;
+      text-decoration: none;
     }
 
     .lang-menu a:hover {
@@ -117,6 +125,7 @@
       border-radius: 12px;
       font-weight: 700;
       border: 1px solid rgba(255,255,255,0.1);
+      text-decoration: none;
     }
 
     .btn-primary {
@@ -130,16 +139,21 @@
     }
 
     .hero {
-      padding: 60px 0;
+      padding: 90px 0;
     }
 
     h1 {
       font-size: 2.8rem;
+      line-height: 1.1;
+      margin-bottom: 18px;
+      max-width: 700px;
     }
 
     p {
       color: var(--muted);
       max-width: 600px;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
   </style>
 </head>
@@ -160,9 +174,8 @@
       <a href="#">Benefits</a>
     </nav>
 
-    <!-- LANGUAGE -->
     <div class="lang-dropdown">
-      <button class="lang-btn">🇬🇧 EN ▾</button>
+      <button class="lang-btn">EN ▾</button>
       <div class="lang-menu">
         <a href="index.html">🇮🇹 Italiano</a>
         <a href="index-en.html">🇬🇧 English</a>
@@ -182,9 +195,9 @@
 
 <section class="hero">
   <div class="container">
-    <h1>Your Digital Boat Logbook</h1>
+    <h1>The Smart Logbook for Boaters</h1>
     <p>
-      Track trips, fuel, costs and maintenance in one simple and powerful app.
+      Track every trip, fuel usage and onboard costs in one simple, powerful app.
     </p>
   </div>
 </section>
