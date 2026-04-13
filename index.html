@@ -434,6 +434,117 @@
       line-height: 1.55;
     }
 
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+
+    .community-card {
+      background:
+        radial-gradient(circle at top right, rgba(75,183,255,0.18), transparent 26%),
+        radial-gradient(circle at bottom left, rgba(243,198,107,0.14), transparent 22%),
+        linear-gradient(180deg, rgba(10,22,43,0.92), rgba(7,18,35,0.96));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .community-card h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .community-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 1.03rem;
+    }
+
+    .community-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .community-item {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .community-item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .community-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(75,183,255,0.14);
+      border: 1px solid rgba(75,183,255,0.24);
+      color: #9edfff;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .community-item strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .community-item p {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+
+    .community-side {
+      background: linear-gradient(180deg, rgba(11,25,48,0.88), rgba(7,18,35,0.95));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .community-side img {
+      width: 100%;
+      height: 100%;
+      min-height: 320px;
+      object-fit: cover;
+    }
+
+    .community-side-body {
+      padding: 20px;
+    }
+
+    .community-side-body h3 {
+      margin: 0 0 8px;
+    }
+
+    .community-side-body p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .community-actions {
+      margin-top: 22px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
     .benefits {
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
@@ -534,7 +645,8 @@
 
     @media (max-width: 980px) {
       .hero-grid,
-      .benefits {
+      .benefits,
+      .community-grid {
         grid-template-columns: 1fr;
       }
 
@@ -558,6 +670,7 @@
       .btn { width: 100%; }
       .hero-actions,
       .cta-actions,
+      .community-actions,
       .store-links { width: 100%; }
       .brand { font-size: 1.25rem; }
       .footer-box { flex-direction: column; }
@@ -591,6 +704,7 @@
         <a href="#funzionalita">Funzionalità</a>
         <a href="#anteprima">Anteprima</a>
         <a href="#vantaggi">Perché sceglierla</a>
+        <a href="#community">Community</a>
         <a href="#download">Download</a>
       </nav>
 
@@ -781,6 +895,86 @@
       </div>
     </section>
 
+    <section id="community">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Community Diportista</h2>
+          </div>
+          <p>
+            Uno spazio pensato per far crescere la community: consigli, esperienze,
+            rotte, attrezzatura, manutenzione e confronto reale tra diportisti.
+          </p>
+        </div>
+
+        <div class="community-grid">
+          <div class="community-card">
+            <h2>Una community che può diventare un vero forum</h2>
+            <p>
+              Diportista non vuole essere solo un'app utile, ma anche un punto di
+              riferimento per chi vive davvero il mare. Possiamo partire con una
+              pagina semplice di community e trasformarla poi in un forum completo.
+            </p>
+
+            <div class="community-list">
+              <div class="community-item">
+                <div class="community-icon">⚓</div>
+                <div>
+                  <strong>Consigli pratici</strong>
+                  <p>
+                    Confrontati su navigazione, manutenzione, strumenti di bordo e
+                    vita reale in barca o gommone.
+                  </p>
+                </div>
+              </div>
+
+              <div class="community-item">
+                <div class="community-icon">🧭</div>
+                <div>
+                  <strong>Rotte ed esperienze</strong>
+                  <p>
+                    Condividi uscite, mete, idee, problemi risolti e suggerimenti
+                    utili per altri diportisti.
+                  </p>
+                </div>
+              </div>
+
+              <div class="community-item">
+                <div class="community-icon">💬</div>
+                <div>
+                  <strong>Forum in crescita</strong>
+                  <p>
+                    Possiamo iniziare con una sezione semplice e poi evolverla in
+                    un vero forum con categorie, domande e risposte.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="community-actions">
+              <a class="btn btn-primary" href="#" target="_blank" rel="noopener noreferrer">
+                Entra nella community
+              </a>
+              <a class="btn btn-secondary" href="#download">
+                Scarica l'app
+              </a>
+            </div>
+          </div>
+
+          <div class="community-side">
+            <img src="hero-brazil.png" alt="Community Diportista" />
+            <div class="community-side-body">
+              <h3>Community nautica, stile Diportista</h3>
+              <p>
+                Una sezione elegante e coerente con il sito, pensata per aumentare
+                fiducia, permanenza sul sito e coinvolgimento degli utenti.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="vantaggi">
       <div class="container benefits">
         <div class="panel">
@@ -842,7 +1036,8 @@
       <div>
         <a href="privacy.html">Privacy</a> •
         <a href="terms.html">Termini</a> •
-        <a href="disclaimer.html">Disclaimer</a>
+        <a href="disclaimer.html">Disclaimer</a> •
+        <a href="#community">Community</a>
       </div>
     </div>
   </footer>
