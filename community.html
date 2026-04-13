@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community Diportista | Condividi esperienze, consigli e vita di bordo</title>
+  <title>Diportista Community</title>
   <meta
     name="description"
-    content="Entra nella Community Diportista: uno spazio dedicato a diportisti e armatori per condividere esperienze, consigli, rotte, attrezzatura e vita di bordo."
+    content="Entra nella Community Diportista: esperienze reali, mare, navigazione e passione condivisa."
   />
 
   <style>
     :root {
       --bg: #06111f;
       --bg-soft: #09172a;
-      --card: rgba(8, 18, 36, 0.82);
+      --card: rgba(8, 18, 36, 0.84);
       --card-strong: rgba(12, 27, 51, 0.96);
       --text: #eef4ff;
       --muted: #a9b9d3;
@@ -21,13 +21,12 @@
       --blue: #4bb7ff;
       --blue-soft: rgba(75, 183, 255, 0.18);
       --gold: #f3c66b;
-      --gold-soft: rgba(243, 198, 107, 0.16);
       --green: #52d49c;
       --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 18px;
-      --max: 1240px;
+      --max: 1220px;
     }
 
     * { box-sizing: border-box; }
@@ -39,7 +38,7 @@
       color: var(--text);
       background:
         radial-gradient(circle at top left, rgba(75,183,255,0.18), transparent 32%),
-        radial-gradient(circle at top right, rgba(243,198,107,0.11), transparent 28%),
+        radial-gradient(circle at top right, rgba(243,198,107,0.10), transparent 28%),
         linear-gradient(180deg, #040b16 0%, #071120 38%, #07182a 100%);
       min-height: 100vh;
     }
@@ -55,7 +54,7 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 50;
       backdrop-filter: blur(16px);
       background: rgba(4, 11, 22, 0.78);
       border-bottom: 1px solid rgba(255,255,255,0.06);
@@ -104,6 +103,7 @@
       color: var(--muted);
       font-weight: 600;
       font-size: 0.96rem;
+      flex-wrap: wrap;
     }
 
     .nav a:hover { color: white; }
@@ -126,10 +126,11 @@
       padding: 0 22px;
       border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.12);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1rem;
       transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
       box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -147,14 +148,26 @@
       background: rgba(255,255,255,0.05);
     }
 
+    .lang-select {
+      min-height: 46px;
+      padding: 0 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: white;
+      font-weight: 700;
+      font-size: 0.96rem;
+      outline: none;
+    }
+
     .hero {
-      padding: 58px 0 26px;
+      padding: 58px 0 30px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 32px;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
       align-items: center;
     }
 
@@ -176,10 +189,10 @@
 
     h1 {
       margin: 0;
-      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      font-size: clamp(2.6rem, 5vw, 4.9rem);
       line-height: 0.98;
-      letter-spacing: -0.04em;
-      max-width: 780px;
+      letter-spacing: -0.045em;
+      max-width: 760px;
     }
 
     .accent { color: var(--gold); }
@@ -187,13 +200,13 @@
     .hero p {
       margin: 22px 0 0;
       color: var(--muted);
-      font-size: 1.16rem;
-      line-height: 1.75;
+      font-size: 1.14rem;
+      line-height: 1.72;
       max-width: 700px;
     }
 
     .hero-actions {
-      margin-top: 28px;
+      margin-top: 30px;
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
@@ -215,7 +228,8 @@
       width: 100%;
       object-fit: cover;
       border: 1px solid rgba(255,255,255,0.08);
-      min-height: 360px;
+      aspect-ratio: 4 / 3;
+      background: #071120;
     }
 
     section {
@@ -238,28 +252,31 @@
 
     .section-head p {
       margin: 0;
-      max-width: 700px;
+      max-width: 650px;
       color: var(--muted);
-      line-height: 1.7;
-      font-size: 1.05rem;
+      line-height: 1.72;
+      font-size: 1.04rem;
     }
 
-    .cards-3 {
+    .grid-3,
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
+      gap: 16px;
     }
 
-    .info-card {
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
       background: linear-gradient(180deg, rgba(12, 28, 50, 0.88) 0%, rgba(7, 18, 34, 0.92) 100%);
       border: 1px solid var(--line);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 22px;
       box-shadow: var(--shadow);
-      min-height: 220px;
+      min-height: 100%;
     }
 
-    .info-icon {
+    .icon {
       width: 54px;
       height: 54px;
       display: inline-flex;
@@ -272,117 +289,59 @@
       border: 1px solid rgba(75,183,255,0.24);
     }
 
-    .info-card:nth-child(2) .info-icon,
-    .info-card:nth-child(3) .info-icon {
-      background: linear-gradient(180deg, rgba(243,198,107,0.18), rgba(243,198,107,0.08));
-      border-color: rgba(243,198,107,0.26);
-    }
-
-    .info-card h3 {
+    .card h3 {
       margin: 0 0 10px;
       font-size: 1.18rem;
     }
 
-    .info-card p {
+    .card p {
       margin: 0;
       color: var(--muted);
       line-height: 1.65;
       font-size: 0.98rem;
     }
 
-    .community-grid {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
+    .quote {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: #eaf3ff;
     }
 
-    .panel {
-      background: linear-gradient(180deg, rgba(10,22,43,0.9), rgba(7,18,35,0.95));
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .check-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .check {
-      display: grid;
-      grid-template-columns: 36px 1fr;
-      gap: 14px;
-      align-items: start;
-    }
-
-    .check-mark {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(82,212,156,0.14);
-      border: 1px solid rgba(82,212,156,0.26);
-      color: var(--green);
-      font-weight: 900;
-      flex-shrink: 0;
-    }
-
-    .check strong {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 1.02rem;
-    }
-
-    .check p {
-      margin: 0;
+    .quote-author {
+      margin-top: 14px;
       color: var(--muted);
-      line-height: 1.65;
+      font-size: 0.95rem;
+      font-weight: 700;
     }
 
-    .topics-grid {
-      display: grid;
-      gap: 14px;
-      margin-top: 18px;
-    }
-
-    .topic {
-      padding: 16px 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .topic strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 1rem;
-    }
-
-    .topic span {
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.55;
-    }
-
-    .cta {
+    .cta-section {
       position: relative;
       overflow: hidden;
       background:
         radial-gradient(circle at top left, rgba(75,183,255,0.22), transparent 26%),
         radial-gradient(circle at bottom right, rgba(243,198,107,0.2), transparent 26%),
         linear-gradient(180deg, rgba(10,22,43,0.95), rgba(8,18,35,0.98));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
     }
 
-    .cta h2 { margin-top: 0; }
+    .cta-box {
+      text-align: center;
+      padding: 34px 24px;
+    }
 
-    .cta p {
+    .cta-box h2 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 3vw, 3.1rem);
+      letter-spacing: -0.03em;
+    }
+
+    .cta-box p {
+      margin: 0 auto;
       color: var(--muted);
-      font-size: 1.08rem;
-      line-height: 1.7;
+      line-height: 1.72;
+      font-size: 1.06rem;
       max-width: 760px;
     }
 
@@ -390,7 +349,8 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-top: 24px;
+      justify-content: center;
+      margin-top: 26px;
     }
 
     footer {
@@ -409,15 +369,12 @@
     }
 
     @media (max-width: 1180px) {
-      .cards-3 { grid-template-columns: 1fr 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 980px) {
-      .hero-grid,
-      .community-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .hero-grid { grid-template-columns: 1fr; }
       .nav { display: none; }
       .topbar-inner { align-items: flex-start; }
       .topbar-actions {
@@ -431,13 +388,13 @@
     @media (max-width: 720px) {
       .container { width: min(var(--max), calc(100% - 20px)); }
       .hero { padding-top: 34px; }
-      .cards-3 { grid-template-columns: 1fr; }
       .btn { width: 100%; }
       .hero-actions,
       .cta-actions { width: 100%; }
       .brand { font-size: 1.25rem; }
       .footer-box { flex-direction: column; }
-      .topbar-actions { gap: 10px; }
+      .topbar-actions { gap: 10px; width: 100%; }
+      .lang-select { width: 100%; }
     }
   </style>
 </head>
@@ -452,180 +409,139 @@
       </a>
 
       <nav class="nav">
-        <a href="index.html#funzionalita">Funzionalità</a>
-        <a href="index.html#anteprima">Anteprima</a>
-        <a href="index.html#vantaggi">Perché sceglierla</a>
-        <a href="community.html">Community</a>
-        <a href="index.html#download">Download</a>
+        <a href="#about" data-i18n="nav_about">Community</a>
+        <a href="#values" data-i18n="nav_values">Values</a>
+        <a href="#voices" data-i18n="nav_voices">Voices</a>
+        <a href="#join" data-i18n="nav_join">Join</a>
       </nav>
 
       <div class="topbar-actions">
-        <a class="btn btn-secondary" href="index.html">Torna al sito</a>
+        <select id="langSelect" class="lang-select" aria-label="Language selector">
+          <option value="it">🇮🇹 Italiano</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="fr">🇫🇷 Français</option>
+          <option value="es">🇪🇸 Español</option>
+          <option value="pt">🇧🇷 Português</option>
+        </select>
+
+        <a class="btn btn-secondary" id="backHomeBtn" href="index.html" data-i18n="back_home">Back to home</a>
       </div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
+  <main id="top">
+    <section class="hero" id="about">
       <div class="container hero-grid">
         <div>
-          <div class="eyebrow">Community Diportista</div>
-          <h1>Un luogo digitale per chi <span class="accent">vive davvero il mare</span></h1>
-          <p>
-            La Community Diportista nasce per creare uno spazio dedicato a armatori,
-            diportisti e appassionati di navigazione: esperienze reali, consigli utili,
-            rotte, manutenzione, strumenti di bordo e confronto tra persone che condividono
-            la stessa passione.
+          <div class="eyebrow" data-i18n="eyebrow">Diportista Community</div>
+          <h1 data-i18n-html="hero_title">
+            La community di chi vive
+            <span class="accent">davvero il mare</span>
+          </h1>
+          <p data-i18n="hero_text">
+            Diportista non è solo un’app. È anche uno spazio per scoprire esperienze reali,
+            condividere passione, trovare ispirazione e sentirsi parte di una community
+            che ama la navigazione, il mare e la vita a bordo.
           </p>
 
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#partecipa">Scopri come partecipare</a>
-            <a class="btn btn-secondary" href="index.html#download">Scarica l'app</a>
+            <a class="btn btn-primary" href="#join" data-i18n="hero_cta_primary">Entra nella community</a>
+            <a class="btn btn-secondary" href="index.html" id="heroHomeBtn" data-i18n="hero_cta_secondary">Torna al sito</a>
           </div>
         </div>
 
         <div class="hero-card">
-          <img src="hero-brazil.png" alt="Community nautica Diportista" />
+          <img src="hero-postcard.png" alt="Diportista Community" />
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="values">
       <div class="container">
         <div class="section-head">
           <div>
-            <h2>Cosa troverai nella community</h2>
+            <h2 data-i18n="values_title">Cosa trovi qui</h2>
           </div>
-          <p>
-            Un ambiente semplice ma utile, pensato per far crescere nel tempo una vera rete
-            di utenti Diportista e appassionati del mare.
+          <p data-i18n="values_intro">
+            Un punto di incontro per armatori, diportisti e appassionati del mare:
+            più reale, più umano, più vicino alla navigazione vera.
           </p>
         </div>
 
-        <div class="cards-3">
-          <article class="info-card">
-            <div class="info-icon">⚓</div>
-            <h3>Consigli pratici</h3>
-            <p>
-              Domande e risposte su gestione della barca, attrezzatura, piccole soluzioni
-              di bordo, manutenzione e uso quotidiano.
+        <div class="grid-3">
+          <article class="card">
+            <div class="icon">⚓</div>
+            <h3 data-i18n="card1_title">Esperienze reali</h3>
+            <p data-i18n="card1_text">
+              Scopri contenuti legati a uscite vere, vita a bordo, itinerari e utilizzo quotidiano dell’app in mare.
             </p>
           </article>
 
-          <article class="info-card">
-            <div class="info-icon">🧭</div>
-            <h3>Rotte ed esperienze</h3>
-            <p>
-              Condivisione di uscite, mete, tratti di costa, porti, idee di navigazione
-              e racconti utili per altri diportisti.
+          <article class="card">
+            <div class="icon">🧭</div>
+            <h3 data-i18n="card2_title">Ispirazione e idee</h3>
+            <p data-i18n="card2_text">
+              Trova spunti, idee, rotte, modi d’uso e piccole storie che rendono la navigazione ancora più bella.
             </p>
           </article>
 
-          <article class="info-card">
-            <div class="info-icon">💬</div>
-            <h3>Forum in evoluzione</h3>
-            <p>
-              Questa pagina è il primo passo: può diventare una community sempre più ricca,
-              fino a un vero forum strutturato per temi.
+          <article class="card">
+            <div class="icon">🌊</div>
+            <h3 data-i18n="card3_title">Spirito Diportista</h3>
+            <p data-i18n="card3_text">
+              Un luogo pensato per chi il mare non lo guarda soltanto, ma lo vive davvero.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section>
-      <div class="container community-grid">
-        <div class="panel">
-          <h2>Perché creare una community Diportista</h2>
-
-          <div class="check-list">
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Valore reale per gli utenti</strong>
-                <p>
-                  Non solo un'app, ma anche un punto di riferimento dove confrontarsi
-                  con altri che hanno esigenze simili.
-                </p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Più fiducia e permanenza sul sito</strong>
-                <p>
-                  Una community ben presentata aumenta credibilità, coinvolgimento
-                  e rafforza il brand Diportista.
-                </p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Crescita graduale</strong>
-                <p>
-                  Si può partire con una pagina semplice e poi collegare un gruppo,
-                  una sezione commenti o un forum esterno più completo.
-                </p>
-              </div>
-            </div>
-
-            <div class="check">
-              <div class="check-mark">✓</div>
-              <div>
-                <strong>Coerente con il mondo nautico</strong>
-                <p>
-                  Il mare si vive anche condividendo esperienze, consigli e piccoli
-                  trucchi che solo chi naviga conosce davvero.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h2>Temi ideali per iniziare</h2>
-
-          <div class="topics-grid">
-            <div class="topic">
-              <strong>Rotte e mete</strong>
-              <span>Dove andare, soste consigliate, baie, porti e idee per uscite giornaliere o weekend.</span>
-            </div>
-
-            <div class="topic">
-              <strong>Carburante e consumi</strong>
-              <span>Confronti reali tra barche e gommoni, autonomia, rifornimenti e ottimizzazione dei costi.</span>
-            </div>
-
-            <div class="topic">
-              <strong>Manutenzione e bordo</strong>
-              <span>Piccoli problemi pratici, accessori utili, controlli stagionali e consigli di gestione.</span>
-            </div>
-
-            <div class="topic">
-              <strong>Uso di Diportista</strong>
-              <span>Idee, suggerimenti, richieste di nuove funzioni e confronto sull'evoluzione dell'app.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="partecipa">
+    <section id="voices">
       <div class="container">
-        <div class="panel cta">
-          <h2>La community è pronta a crescere con Diportista</h2>
-          <p>
-            Questa pagina può essere il primo punto d'incontro della community.
-            Nel prossimo step possiamo collegarla a un gruppo Facebook, a una pagina
-            dedicata ai contatti, oppure a un vero forum esterno più strutturato.
+        <div class="section-head">
+          <div>
+            <h2 data-i18n="voices_title">La voce della community</h2>
+          </div>
+          <p data-i18n="voices_intro">
+            Passione, semplicità, vita vera a bordo: questo è il mondo Diportista.
           </p>
+        </div>
 
-          <div class="cta-actions">
-            <a class="btn btn-primary" href="index.html#download">Scarica l'app</a>
-            <a class="btn btn-secondary" href="index.html">Torna alla homepage</a>
+        <div class="grid-2">
+          <article class="card">
+            <div class="quote" data-i18n="quote1">
+              “Non solo numeri, non solo statistiche. Finalmente un modo più umano e chiaro
+              di raccontare e ricordare la vita in mare.”
+            </div>
+            <div class="quote-author" data-i18n="quote1_author">— Community Diportista</div>
+          </article>
+
+          <article class="card">
+            <div class="quote" data-i18n="quote2">
+              “La parte più bella non è solo controllare i costi. È ritrovare le uscite,
+              le emozioni, i luoghi e l’esperienza vissuta.”
+            </div>
+            <div class="quote-author" data-i18n="quote2_author">— Community Diportista</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="join">
+      <div class="container">
+        <div class="cta-section">
+          <div class="cta-box">
+            <h2 data-i18n="join_title">Entra nel mondo Diportista</h2>
+            <p data-i18n="join_text">
+              Che tu abbia una barca, un gommone o semplicemente una grande passione per il mare,
+              qui trovi uno spazio coerente con il tuo stile di navigazione.
+            </p>
+
+            <div class="cta-actions">
+              <a class="btn btn-primary" href="index.html" id="ctaHomeBtn" data-i18n="join_home">Vai al sito</a>
+              <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=it.germano.diportista&pli=1" target="_blank" rel="noopener noreferrer" data-i18n="join_google">Google Play</a>
+              <a class="btn btn-secondary" href="https://apps.apple.com/it/app/diportista/id6759178080" target="_blank" rel="noopener noreferrer" data-i18n="join_apple">App Store</a>
+            </div>
           </div>
         </div>
       </div>
@@ -634,14 +550,270 @@
 
   <footer>
     <div class="container footer-box">
-      <div>© 2026 Diportista • Community per armatori e diportisti.</div>
+      <div data-i18n="footer_text">
+        © 2026 Diportista • Community, mare, passione e vita a bordo.
+      </div>
       <div>
-        <a href="index.html">Home</a> •
-        <a href="privacy.html">Privacy</a> •
-        <a href="terms.html">Termini</a> •
-        <a href="disclaimer.html">Disclaimer</a>
+        <a href="privacy.html" data-i18n="footer_privacy">Privacy</a> •
+        <a href="terms.html" data-i18n="footer_terms">Termini</a> •
+        <a href="disclaimer.html" data-i18n="footer_legal">Note legali</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    const translations = {
+      it: {
+        meta_title: "Diportista Community",
+        meta_description: "Entra nella Community Diportista: esperienze reali, mare, navigazione e passione condivisa.",
+        nav_about: "Community",
+        nav_values: "Valori",
+        nav_voices: "Voci",
+        nav_join: "Entra",
+        back_home: "Torna al sito",
+        eyebrow: "Diportista Community",
+        hero_title: 'La community di chi vive <span class="accent">davvero il mare</span>',
+        hero_text: "Diportista non è solo un’app. È anche uno spazio per scoprire esperienze reali, condividere passione, trovare ispirazione e sentirsi parte di una community che ama la navigazione, il mare e la vita a bordo.",
+        hero_cta_primary: "Entra nella community",
+        hero_cta_secondary: "Torna al sito",
+        values_title: "Cosa trovi qui",
+        values_intro: "Un punto di incontro per armatori, diportisti e appassionati del mare: più reale, più umano, più vicino alla navigazione vera.",
+        card1_title: "Esperienze reali",
+        card1_text: "Scopri contenuti legati a uscite vere, vita a bordo, itinerari e utilizzo quotidiano dell’app in mare.",
+        card2_title: "Ispirazione e idee",
+        card2_text: "Trova spunti, idee, rotte, modi d’uso e piccole storie che rendono la navigazione ancora più bella.",
+        card3_title: "Spirito Diportista",
+        card3_text: "Un luogo pensato per chi il mare non lo guarda soltanto, ma lo vive davvero.",
+        voices_title: "La voce della community",
+        voices_intro: "Passione, semplicità, vita vera a bordo: questo è il mondo Diportista.",
+        quote1: "“Non solo numeri, non solo statistiche. Finalmente un modo più umano e chiaro di raccontare e ricordare la vita in mare.”",
+        quote1_author: "— Community Diportista",
+        quote2: "“La parte più bella non è solo controllare i costi. È ritrovare le uscite, le emozioni, i luoghi e l’esperienza vissuta.”",
+        quote2_author: "— Community Diportista",
+        join_title: "Entra nel mondo Diportista",
+        join_text: "Che tu abbia una barca, un gommone o semplicemente una grande passione per il mare, qui trovi uno spazio coerente con il tuo stile di navigazione.",
+        join_home: "Vai al sito",
+        join_google: "Google Play",
+        join_apple: "App Store",
+        footer_text: "© 2026 Diportista • Community, mare, passione e vita a bordo.",
+        footer_privacy: "Privacy",
+        footer_terms: "Termini",
+        footer_legal: "Note legali"
+      },
+      en: {
+        meta_title: "Diportista Community",
+        meta_description: "Join the Diportista Community: real experiences, sea, navigation and shared passion.",
+        nav_about: "Community",
+        nav_values: "Values",
+        nav_voices: "Voices",
+        nav_join: "Join",
+        back_home: "Back to home",
+        eyebrow: "Diportista Community",
+        hero_title: 'The community for those who truly <span class="accent">live the sea</span>',
+        hero_text: "Diportista is not just an app. It is also a place to discover real experiences, share passion, find inspiration and feel part of a community that loves navigation, the sea and life on board.",
+        hero_cta_primary: "Join the community",
+        hero_cta_secondary: "Back to site",
+        values_title: "What you will find here",
+        values_intro: "A meeting point for boat owners, boating enthusiasts and sea lovers: more real, more human, closer to true navigation.",
+        card1_title: "Real experiences",
+        card1_text: "Discover content linked to real trips, life on board, routes and everyday use of the app at sea.",
+        card2_title: "Inspiration and ideas",
+        card2_text: "Find ideas, routes, use cases and small stories that make navigation even more beautiful.",
+        card3_title: "Diportista spirit",
+        card3_text: "A place designed for those who do not just look at the sea, but truly live it.",
+        voices_title: "The voice of the community",
+        voices_intro: "Passion, simplicity, real life on board: this is the Diportista world.",
+        quote1: "“Not just numbers, not just statistics. Finally a more human and clearer way to tell and remember life at sea.”",
+        quote1_author: "— Diportista Community",
+        quote2: "“The best part is not only controlling costs. It is finding again the trips, the emotions, the places and the lived experience.”",
+        quote2_author: "— Diportista Community",
+        join_title: "Enter the Diportista world",
+        join_text: "Whether you own a boat, a RIB, or simply have a great passion for the sea, here you will find a space that matches your style of navigation.",
+        join_home: "Go to website",
+        join_google: "Google Play",
+        join_apple: "App Store",
+        footer_text: "© 2026 Diportista • Community, sea, passion and life on board.",
+        footer_privacy: "Privacy",
+        footer_terms: "Terms",
+        footer_legal: "Legal notice"
+      },
+      fr: {
+        meta_title: "Diportista Community",
+        meta_description: "Entrez dans la communauté Diportista : expériences réelles, mer, navigation et passion partagée.",
+        nav_about: "Community",
+        nav_values: "Valeurs",
+        nav_voices: "Voix",
+        nav_join: "Entrer",
+        back_home: "Retour au site",
+        eyebrow: "Diportista Community",
+        hero_title: 'La communauté de ceux qui vivent <span class="accent">vraiment la mer</span>',
+        hero_text: "Diportista n’est pas seulement une application. C’est aussi un espace pour découvrir des expériences réelles, partager une passion, trouver de l’inspiration et se sentir partie d’une communauté qui aime la navigation, la mer et la vie à bord.",
+        hero_cta_primary: "Entrer dans la communauté",
+        hero_cta_secondary: "Retour au site",
+        values_title: "Ce que vous trouverez ici",
+        values_intro: "Un point de rencontre pour propriétaires, plaisanciers et passionnés de la mer : plus réel, plus humain, plus proche de la vraie navigation.",
+        card1_title: "Expériences réelles",
+        card1_text: "Découvrez des contenus liés à de vraies sorties, à la vie à bord, aux itinéraires et à l’usage quotidien de l’application en mer.",
+        card2_title: "Inspiration et idées",
+        card2_text: "Trouvez des idées, des itinéraires, des usages concrets et de petites histoires qui rendent la navigation encore plus belle.",
+        card3_title: "Esprit Diportista",
+        card3_text: "Un lieu pensé pour ceux qui ne regardent pas seulement la mer, mais qui la vivent vraiment.",
+        voices_title: "La voix de la communauté",
+        voices_intro: "Passion, simplicité, vraie vie à bord : voilà l’univers Diportista.",
+        quote1: "“Pas seulement des chiffres, pas seulement des statistiques. Enfin une manière plus humaine et plus claire de raconter et de se souvenir de la vie en mer.”",
+        quote1_author: "— Community Diportista",
+        quote2: "“Le plus beau n’est pas seulement de contrôler les coûts. C’est de retrouver les sorties, les émotions, les lieux et l’expérience vécue.”",
+        quote2_author: "— Community Diportista",
+        join_title: "Entrez dans le monde Diportista",
+        join_text: "Que vous ayez un bateau, un semi-rigide ou simplement une grande passion pour la mer, vous trouverez ici un espace cohérent avec votre manière de naviguer.",
+        join_home: "Aller au site",
+        join_google: "Google Play",
+        join_apple: "App Store",
+        footer_text: "© 2026 Diportista • Community, mer, passion et vie à bord.",
+        footer_privacy: "Confidentialité",
+        footer_terms: "Conditions",
+        footer_legal: "Mentions légales"
+      },
+      es: {
+        meta_title: "Diportista Community",
+        meta_description: "Entra en la comunidad Diportista: experiencias reales, mar, navegación y pasión compartida.",
+        nav_about: "Community",
+        nav_values: "Valores",
+        nav_voices: "Voces",
+        nav_join: "Entrar",
+        back_home: "Volver al sitio",
+        eyebrow: "Diportista Community",
+        hero_title: 'La comunidad de quienes viven <span class="accent">de verdad el mar</span>',
+        hero_text: "Diportista no es solo una app. También es un espacio para descubrir experiencias reales, compartir pasión, encontrar inspiración y sentirse parte de una comunidad que ama la navegación, el mar y la vida a bordo.",
+        hero_cta_primary: "Entrar en la comunidad",
+        hero_cta_secondary: "Volver al sitio",
+        values_title: "Qué encontrarás aquí",
+        values_intro: "Un punto de encuentro para propietarios, navegantes y amantes del mar: más real, más humano, más cercano a la navegación verdadera.",
+        card1_title: "Experiencias reales",
+        card1_text: "Descubre contenidos ligados a salidas reales, vida a bordo, rutas y uso diario de la app en el mar.",
+        card2_title: "Inspiración e ideas",
+        card2_text: "Encuentra ideas, rutas, formas de uso y pequeñas historias que hacen la navegación todavía más bonita.",
+        card3_title: "Espíritu Diportista",
+        card3_text: "Un lugar pensado para quien no solo mira el mar, sino que lo vive de verdad.",
+        voices_title: "La voz de la comunidad",
+        voices_intro: "Pasión, sencillez, vida real a bordo: este es el mundo Diportista.",
+        quote1: "“No solo números, no solo estadísticas. Por fin una forma más humana y clara de contar y recordar la vida en el mar.”",
+        quote1_author: "— Community Diportista",
+        quote2: "“Lo mejor no es solo controlar los costes. Es volver a encontrar las salidas, las emociones, los lugares y la experiencia vivida.”",
+        quote2_author: "— Community Diportista",
+        join_title: "Entra en el mundo Diportista",
+        join_text: "Tengas una embarcación, una neumática o simplemente una gran pasión por el mar, aquí encontrarás un espacio coherente con tu estilo de navegación.",
+        join_home: "Ir al sitio",
+        join_google: "Google Play",
+        join_apple: "App Store",
+        footer_text: "© 2026 Diportista • Community, mar, pasión y vida a bordo.",
+        footer_privacy: "Privacidad",
+        footer_terms: "Términos",
+        footer_legal: "Aviso legal"
+      },
+      pt: {
+        meta_title: "Diportista Community",
+        meta_description: "Entre na comunidade Diportista: experiências reais, mar, navegação e paixão compartilhada.",
+        nav_about: "Community",
+        nav_values: "Valores",
+        nav_voices: "Vozes",
+        nav_join: "Entrar",
+        back_home: "Voltar ao site",
+        eyebrow: "Diportista Community",
+        hero_title: 'A comunidade de quem vive <span class="accent">de verdade o mar</span>',
+        hero_text: "Diportista não é só um app. Também é um espaço para descobrir experiências reais, compartilhar paixão, encontrar inspiração e sentir-se parte de uma comunidade que ama navegação, mar e vida a bordo.",
+        hero_cta_primary: "Entrar na comunidade",
+        hero_cta_secondary: "Voltar ao site",
+        values_title: "O que você encontra aqui",
+        values_intro: "Um ponto de encontro para proprietários, navegadores e apaixonados pelo mar: mais real, mais humano, mais próximo da navegação de verdade.",
+        card1_title: "Experiências reais",
+        card1_text: "Descubra conteúdos ligados a saídas reais, vida a bordo, rotas e uso cotidiano do app no mar.",
+        card2_title: "Inspiração e ideias",
+        card2_text: "Encontre ideias, rotas, formas de uso e pequenas histórias que tornam a navegação ainda mais bonita.",
+        card3_title: "Espírito Diportista",
+        card3_text: "Um espaço pensado para quem não apenas olha o mar, mas o vive de verdade.",
+        voices_title: "A voz da comunidade",
+        voices_intro: "Paixão, simplicidade, vida real a bordo: esse é o mundo Diportista.",
+        quote1: "“Não são só números, não são só estatísticas. Finalmente uma forma mais humana e clara de contar e lembrar a vida no mar.”",
+        quote1_author: "— Community Diportista",
+        quote2: "“A melhor parte não é só controlar os custos. É reencontrar as saídas, as emoções, os lugares e a experiência vivida.”",
+        quote2_author: "— Community Diportista",
+        join_title: "Entre no universo Diportista",
+        join_text: "Seja você dono de barco, bote ou simplesmente alguém com grande paixão pelo mar, aqui existe um espaço coerente com o seu jeito de navegar.",
+        join_home: "Ir ao site",
+        join_google: "Google Play",
+        join_apple: "App Store",
+        footer_text: "© 2026 Diportista • Community, mar, paixão e vida a bordo.",
+        footer_privacy: "Privacidade",
+        footer_terms: "Termos",
+        footer_legal: "Aviso legal"
+      }
+    };
+
+    function getLangFromQuery() {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get("lang");
+      return ["it", "en", "fr", "es", "pt"].includes(lang) ? lang : null;
+    }
+
+    function getBrowserLang() {
+      const lang = (navigator.language || "it").toLowerCase();
+      if (lang.startsWith("it")) return "it";
+      if (lang.startsWith("en")) return "en";
+      if (lang.startsWith("fr")) return "fr";
+      if (lang.startsWith("es")) return "es";
+      if (lang.startsWith("pt")) return "pt";
+      return "it";
+    }
+
+    function setLanguage(lang) {
+      const t = translations[lang] || translations.it;
+
+      document.documentElement.lang = lang === "pt" ? "pt-BR" : lang;
+      document.title = t.meta_title;
+
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) metaDesc.setAttribute("content", t.meta_description);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (t[key]) el.textContent = t[key];
+      });
+
+      document.querySelectorAll("[data-i18n-html]").forEach(el => {
+        const key = el.getAttribute("data-i18n-html");
+        if (t[key]) el.innerHTML = t[key];
+      });
+
+      document.getElementById("langSelect").value = lang;
+
+      const homeMap = {
+        it: "index.html",
+        en: "index-en.html",
+        fr: "index-fr.html",
+        es: "index-es.html",
+        pt: "index-pt.html"
+      };
+
+      const homeHref = homeMap[lang] || "index.html";
+      document.getElementById("backHomeBtn").href = homeHref;
+      document.getElementById("heroHomeBtn").href = homeHref;
+      document.getElementById("ctaHomeBtn").href = homeHref;
+
+      const url = new URL(window.location.href);
+      url.searchParams.set("lang", lang);
+      window.history.replaceState({}, "", url);
+    }
+
+    const initialLang = getLangFromQuery() || getBrowserLang();
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setLanguage(initialLang);
+
+      document.getElementById("langSelect").addEventListener("change", (e) => {
+        setLanguage(e.target.value);
+      });
+    });
+  </script>
 </body>
 </html>
