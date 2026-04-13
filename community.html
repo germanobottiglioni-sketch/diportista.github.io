@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Diportista | Condividi esperienze, consigli e vita di bordo</title>
+  <meta
+    name="description"
+    content="Entra nella Community Diportista: uno spazio dedicato a diportisti e armatori per condividere esperienze, consigli, rotte, attrezzatura e vita di bordo."
+  />
+
+  <style>
+    :root {
+      --bg: #06111f;
+      --bg-soft: #09172a;
+      --card: rgba(8, 18, 36, 0.82);
+      --card-strong: rgba(12, 27, 51, 0.96);
+      --text: #eef4ff;
+      --muted: #a9b9d3;
+      --line: rgba(133, 164, 210, 0.18);
+      --blue: #4bb7ff;
+      --blue-soft: rgba(75, 183, 255, 0.18);
+      --gold: #f3c66b;
+      --gold-soft: rgba(243, 198, 107, 0.16);
+      --green: #52d49c;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 18px;
+      --max: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(75,183,255,0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(243,198,107,0.11), transparent 28%),
+        linear-gradient(180deg, #040b16 0%, #071120 38%, #07182a 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: rgba(4, 11, 22, 0.78);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 16px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.28);
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+
+    .brand-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.96rem;
+    }
+
+    .nav a:hover { color: white; }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.24);
+    }
+
+    .btn-primary {
+      color: #071220;
+      background: linear-gradient(180deg, #ffffff 0%, #e9f7ff 100%);
+    }
+
+    .btn-secondary {
+      color: white;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero {
+      padding: 58px 0 26px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      border: 1px solid rgba(75,183,255,0.24);
+      color: #99dbff;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      font-size: 0.84rem;
+      margin-bottom: 22px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 5vw, 4.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      max-width: 780px;
+    }
+
+    .accent { color: var(--gold); }
+
+    .hero p {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.16rem;
+      line-height: 1.75;
+      max-width: 700px;
+    }
+
+    .hero-actions {
+      margin-top: 28px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-card {
+      background:
+        radial-gradient(circle at top right, rgba(75,183,255,0.22), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(243,198,107,0.18), transparent 22%),
+        linear-gradient(180deg, rgba(9,18,34,0.96) 0%, rgba(7,17,32,0.98) 100%);
+      border: 1px solid rgba(122, 166, 233, 0.22);
+      border-radius: 30px;
+      padding: 14px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.42);
+    }
+
+    .hero-card img {
+      border-radius: 22px;
+      width: 100%;
+      object-fit: cover;
+      border: 1px solid rgba(255,255,255,0.08);
+      min-height: 360px;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(2rem, 3vw, 3rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      max-width: 700px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .info-card {
+      background: linear-gradient(180deg, rgba(12, 28, 50, 0.88) 0%, rgba(7, 18, 34, 0.92) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      min-height: 220px;
+    }
+
+    .info-icon {
+      width: 54px;
+      height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      font-size: 1.45rem;
+      background: linear-gradient(180deg, rgba(75,183,255,0.18), rgba(75,183,255,0.08));
+      border: 1px solid rgba(75,183,255,0.24);
+    }
+
+    .info-card:nth-child(2) .info-icon,
+    .info-card:nth-child(3) .info-icon {
+      background: linear-gradient(180deg, rgba(243,198,107,0.18), rgba(243,198,107,0.08));
+      border-color: rgba(243,198,107,0.26);
+    }
+
+    .info-card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.98rem;
+    }
+
+    .community-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(10,22,43,0.9), rgba(7,18,35,0.95));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .check-list {
+      display: grid;
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .check {
+      display: grid;
+      grid-template-columns: 36px 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .check-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(82,212,156,0.14);
+      border: 1px solid rgba(82,212,156,0.26);
+      color: var(--green);
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .check strong {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.02rem;
+    }
+
+    .check p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .topics-grid {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .topic {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .topic strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .topic span {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.55;
+    }
+
+    .cta {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at top left, rgba(75,183,255,0.22), transparent 26%),
+        radial-gradient(circle at bottom right, rgba(243,198,107,0.2), transparent 26%),
+        linear-gradient(180deg, rgba(10,22,43,0.95), rgba(8,18,35,0.98));
+    }
+
+    .cta h2 { margin-top: 0; }
+
+    .cta p {
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      max-width: 760px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+    }
+
+    .footer-box {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1180px) {
+      .cards-3 { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .community-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav { display: none; }
+      .topbar-inner { align-items: flex-start; }
+      .topbar-actions {
+        width: 100%;
+        justify-content: flex-start;
+        margin-left: 0;
+      }
+      .section-head { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 720px) {
+      .container { width: min(var(--max), calc(100% - 20px)); }
+      .hero { padding-top: 34px; }
+      .cards-3 { grid-template-columns: 1fr; }
+      .btn { width: 100%; }
+      .hero-actions,
+      .cta-actions { width: 100%; }
+      .brand { font-size: 1.25rem; }
+      .footer-box { flex-direction: column; }
+      .topbar-actions { gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-badge">
+          <img src="hero-postcard.png" alt="Diportista" />
+        </span>
+        <span>Diportista</span>
+      </a>
+
+      <nav class="nav">
+        <a href="index.html#funzionalita">Funzionalità</a>
+        <a href="index.html#anteprima">Anteprima</a>
+        <a href="index.html#vantaggi">Perché sceglierla</a>
+        <a href="community.html">Community</a>
+        <a href="index.html#download">Download</a>
+      </nav>
+
+      <div class="topbar-actions">
+        <a class="btn btn-secondary" href="index.html">Torna al sito</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Community Diportista</div>
+          <h1>Un luogo digitale per chi <span class="accent">vive davvero il mare</span></h1>
+          <p>
+            La Community Diportista nasce per creare uno spazio dedicato a armatori,
+            diportisti e appassionati di navigazione: esperienze reali, consigli utili,
+            rotte, manutenzione, strumenti di bordo e confronto tra persone che condividono
+            la stessa passione.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#partecipa">Scopri come partecipare</a>
+            <a class="btn btn-secondary" href="index.html#download">Scarica l'app</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="hero-brazil.png" alt="Community nautica Diportista" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Cosa troverai nella community</h2>
+          </div>
+          <p>
+            Un ambiente semplice ma utile, pensato per far crescere nel tempo una vera rete
+            di utenti Diportista e appassionati del mare.
+          </p>
+        </div>
+
+        <div class="cards-3">
+          <article class="info-card">
+            <div class="info-icon">⚓</div>
+            <h3>Consigli pratici</h3>
+            <p>
+              Domande e risposte su gestione della barca, attrezzatura, piccole soluzioni
+              di bordo, manutenzione e uso quotidiano.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">🧭</div>
+            <h3>Rotte ed esperienze</h3>
+            <p>
+              Condivisione di uscite, mete, tratti di costa, porti, idee di navigazione
+              e racconti utili per altri diportisti.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">💬</div>
+            <h3>Forum in evoluzione</h3>
+            <p>
+              Questa pagina è il primo passo: può diventare una community sempre più ricca,
+              fino a un vero forum strutturato per temi.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container community-grid">
+        <div class="panel">
+          <h2>Perché creare una community Diportista</h2>
+
+          <div class="check-list">
+            <div class="check">
+              <div class="check-mark">✓</div>
+              <div>
+                <strong>Valore reale per gli utenti</strong>
+                <p>
+                  Non solo un'app, ma anche un punto di riferimento dove confrontarsi
+                  con altri che hanno esigenze simili.
+                </p>
+              </div>
+            </div>
+
+            <div class="check">
+              <div class="check-mark">✓</div>
+              <div>
+                <strong>Più fiducia e permanenza sul sito</strong>
+                <p>
+                  Una community ben presentata aumenta credibilità, coinvolgimento
+                  e rafforza il brand Diportista.
+                </p>
+              </div>
+            </div>
+
+            <div class="check">
+              <div class="check-mark">✓</div>
+              <div>
+                <strong>Crescita graduale</strong>
+                <p>
+                  Si può partire con una pagina semplice e poi collegare un gruppo,
+                  una sezione commenti o un forum esterno più completo.
+                </p>
+              </div>
+            </div>
+
+            <div class="check">
+              <div class="check-mark">✓</div>
+              <div>
+                <strong>Coerente con il mondo nautico</strong>
+                <p>
+                  Il mare si vive anche condividendo esperienze, consigli e piccoli
+                  trucchi che solo chi naviga conosce davvero.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>Temi ideali per iniziare</h2>
+
+          <div class="topics-grid">
+            <div class="topic">
+              <strong>Rotte e mete</strong>
+              <span>Dove andare, soste consigliate, baie, porti e idee per uscite giornaliere o weekend.</span>
+            </div>
+
+            <div class="topic">
+              <strong>Carburante e consumi</strong>
+              <span>Confronti reali tra barche e gommoni, autonomia, rifornimenti e ottimizzazione dei costi.</span>
+            </div>
+
+            <div class="topic">
+              <strong>Manutenzione e bordo</strong>
+              <span>Piccoli problemi pratici, accessori utili, controlli stagionali e consigli di gestione.</span>
+            </div>
+
+            <div class="topic">
+              <strong>Uso di Diportista</strong>
+              <span>Idee, suggerimenti, richieste di nuove funzioni e confronto sull'evoluzione dell'app.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="partecipa">
+      <div class="container">
+        <div class="panel cta">
+          <h2>La community è pronta a crescere con Diportista</h2>
+          <p>
+            Questa pagina può essere il primo punto d'incontro della community.
+            Nel prossimo step possiamo collegarla a un gruppo Facebook, a una pagina
+            dedicata ai contatti, oppure a un vero forum esterno più strutturato.
+          </p>
+
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="index.html#download">Scarica l'app</a>
+            <a class="btn btn-secondary" href="index.html">Torna alla homepage</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-box">
+      <div>© 2026 Diportista • Community per armatori e diportisti.</div>
+      <div>
+        <a href="index.html">Home</a> •
+        <a href="privacy.html">Privacy</a> •
+        <a href="terms.html">Termini</a> •
+        <a href="disclaimer.html">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
